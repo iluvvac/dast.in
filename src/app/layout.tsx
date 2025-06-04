@@ -57,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-      <Script>
+      <Script id="maze-universal-loader">
         {`(function (m, a, z, e) {
           var s, t;
           try {
