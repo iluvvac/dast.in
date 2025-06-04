@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import Script from 'next/script';
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -55,6 +56,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+      <Script>
+        {`(function (m, a, z, e) {
+          var s, t;
+          try {
+            t = m.sessionStorage.getItem('maze-us');
+          } catch (err) {}
+        
+          if (!t) {
+            t = new Date().getTime();
+            try {
+              m.sessionStorage.setItem('maze-us', t);
+            } catch (err) {}
+          }
+        
+          s = a.createElement('script');
+          s.src = z + '?apiKey=' + e;
+          s.async = true;
+          a.getElementsByTagName('head')[0].appendChild(s);
+          m.mazeUniversalSnippetApiKey = e;
+        })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', '9b25f49f-3292-4392-ada6-92536486eb57');`}
+        </Script>
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
